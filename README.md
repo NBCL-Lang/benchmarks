@@ -16,5 +16,7 @@ This repository is used to benchmark NodeJS, [Python](https://www.python.org/), 
 
 Lower is better in all these scenarios:
 
+![fibonacci](results/fibonacci_results.png)
+![fizzbuzz](results/fizzbuzz_results.png)
 ![prime](results/prime_results.png)
 ![parse](results/parsing_speed_results.png)
