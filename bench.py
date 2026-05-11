@@ -3,22 +3,24 @@ import time
 import os
 import matplotlib.pyplot as plt
 
-RUNS = 50
+DEFAULT_RUNS = 50
+PRIME_RUNS = 10 
 NBCL_BIN = "target/release/nbcl-benchmarks"
 RESULTS_DIR = "results"
 BENCH_TASKS = {
     "fibonacci": "bench/fib/fibonacci",
     "fizzbuzz": "bench/fizzbuzz/fizzbuzz",
-    "parsing_speed": "bench/fib/fibonacci" # reuse fibonacci for parsing speed
+    "prime": "bench/prime/prime",
+    "parsing_speed": "bench/fib/fibonacci" 
 }
 
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-def run_benchmark(name, cmd):
-    print(f"  > {name}...", end=" ", flush=True)
+def run_benchmark(name, cmd, num_runs):
+    print(f"  > {name} (x{num_runs})...", end=" ", flush=True)
     times = []
     
-    for _ in range(RUNS):
+    for _ in range(num_runs):
         start = time.perf_counter()
         subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         end = time.perf_counter()
@@ -29,7 +31,9 @@ def run_benchmark(name, cmd):
     return avg
 
 def run_suite(task_name, file_base):
-    print(f"\nRunning {task_name.upper()} Suite:")
+    current_runs = PRIME_RUNS if task_name == "prime" else DEFAULT_RUNS
+    
+    print(f"\nRunning {task_name.upper()} Suite ({current_runs} runs):")
 
     is_parse_test = (task_name == "parsing_speed")
     extra_flags = ["--parse-only"] if is_parse_test else []
@@ -45,7 +49,7 @@ def run_suite(task_name, file_base):
     results = {}
     for name, cmd in commands.items():
         try:
-            results[name] = run_benchmark(name, cmd)
+            results[name] = run_benchmark(name, cmd, current_runs)
         except Exception as e:
             print(f"Failed to run {name}: {e}")
 
@@ -57,7 +61,7 @@ def run_suite(task_name, file_base):
     bars = plt.bar(names, averages, color=colors[:len(names)])
     
     plt.ylabel('Time (seconds)')
-    plt.title(f'{task_name.capitalize()} Benchmark (Average of {RUNS} runs)')
+    plt.title(f'{task_name.capitalize()} Benchmark (Average of {current_runs} runs)')
     
     for bar in bars:
         yval = bar.get_height()

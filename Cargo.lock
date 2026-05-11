@@ -430,9 +430,9 @@ checksum = "f8ca58f447f06ed17d5fc4043ce1b10dd205e060fb3ce5b979b8ed8e59ff3f79"
 
 [[package]]
 name = "nbcl"
-version = "0.1.0"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4f1f0bcc055cf0bdedf6627371b6dcac3b072d2c1886f74a3c2d28927b2d5710"
+checksum = "693ac2e8cab5a217fc2b4421694fb0bebb5d706bbdd87a844dc1d52b1a6fde56"
 dependencies = [
  "pest",
  "pest_derive",

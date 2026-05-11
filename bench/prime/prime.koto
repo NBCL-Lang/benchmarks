@@ -1,0 +1,17 @@
+is_prime = |n|
+  if n <= 1
+    return false
+  
+  for i in 2..n
+    if n % i == 0
+      return false
+  true
+
+count_primes = |limit|
+  count = 0
+  for i in 1..limit
+    if is_prime i
+      count += 1
+  count
+
+print count_primes 10000

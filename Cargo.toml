@@ -5,5 +5,5 @@ edition = "2024"
 
 [dependencies]
 koto = "0.16.1"
-nbcl = "0.1.0"
+nbcl = "0.1.2"
 rhai = { version = "1.24.0", features = ["unchecked"] }

@@ -1,0 +1,19 @@
+fn is_prime(n) {
+    if n <= 1 { return false }
+    for i in 2..n {
+        if n % i == 0 { return false }
+    }
+    return true;
+}
+
+fn count_primes(limit) {
+    let count = 0;
+    for i in 1..limit {
+        if is_prime(i) {
+            count = count + 1;
+        }
+    }
+    return count;
+}
+
+print(count_primes(10000))
