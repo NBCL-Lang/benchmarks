@@ -16,7 +16,26 @@ This repository is used to benchmark NodeJS, [Python](https://www.python.org/), 
 
 Lower is better in all these scenarios:
 
+### Test: Fibonacci
+
+Find fibonacci of `5000`. This tests all the languages in a tight loop.
+
 ![fibonacci](results/fibonacci_results.png)
+
+### Test: Fizzbuzz
+
+Find fizzbuzz of `5000`. This tests all the languages in a tight loop.
+
 ![fizzbuzz](results/fizzbuzz_results.png)
+
+### Test: Prime
+
+Find the `10000` prime number. This is more of a **real-world** test case which is more accurate than Fizzbuzz and Fibonacci. The NodeJS and Python VM's are likely to dominate this test as it is not all about startup time anymore.
+
 ![prime](results/prime_results.png)
+
+## Test: Parse
+
+Finds the fastest parser. This test is mostly oriented towards the Rust engines and tests their startup time. NodeJS and Python are likely to struggle (especially NodeJS because of JIT) because of their massive VM sizes and cost of startup. 
+
 ![parse](results/parsing_speed_results.png)
