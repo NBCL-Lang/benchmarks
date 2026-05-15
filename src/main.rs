@@ -37,7 +37,7 @@ fn run_nbcl(source: &str, parse_only: bool) {
     match engine.parse_str(source) {
         Ok(ast) => {
             if parse_only { return; }
-            match engine.evaluate(ast) {
+            match engine.evaluate_ast(ast) {
                 Ok(evaled) => println!("{:#?}", evaled),
                 Err(e) => println!("{}", e),
             }
