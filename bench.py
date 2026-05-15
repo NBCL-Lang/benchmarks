@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 DEFAULT_RUNS = 50
 PRIME_RUNS = 10 
+PARSING_RUNS = 300 # High error margin on lower counts
 NBCL_BIN = "target/release/nbcl-benchmarks"
 RESULTS_DIR = "results"
 BENCH_TASKS = {
@@ -31,7 +32,12 @@ def run_benchmark(name, cmd, num_runs):
     return avg
 
 def run_suite(task_name, file_base):
-    current_runs = PRIME_RUNS if task_name == "prime" else DEFAULT_RUNS
+    if task_name == "prime":
+        current_runs = PRIME_RUNS
+    elif task_name == "parsing_speed":
+        current_runs = PARSING_RUNS
+    else:
+        current_runs = DEFAULT_RUNS
     
     print(f"\nRunning {task_name.upper()} Suite ({current_runs} runs):")
 
