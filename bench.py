@@ -49,7 +49,7 @@ def run_suite(task_name, file_base):
         "Python": ["python3", "-m", "py_compile", f"{file_base}.py"] if is_parse_test else ["python3", f"{file_base}.py"],
         "Rhai": [NBCL_BIN, "--lang", "rhai", f"{file_base}.rhai"] + extra_flags,
         "Koto": [NBCL_BIN, "--lang", "koto", f"{file_base}.koto"] + extra_flags,
-        "NBCL": [NBCL_BIN, "--lang", "nbcl", f"{file_base}.nbl"] + extra_flags
+        "NBCL": [NBCL_BIN, "--lang", "nbcl", f"{file_base}.nbcl"] + extra_flags
     }
 
     results = {}
